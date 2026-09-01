@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMail } from "react-icons/hi";
 import { socials } from "@/data/content";
 
 const links = [
-  { label: "GitHub", href: socials.github },
-  { label: "LinkedIn", href: socials.linkedin },
-  { label: "Email", href: `mailto:${socials.email}` },
-  { label: "Instagram", href: socials.instagram },
-  { label: "X", href: socials.x },
+  { label: "GitHub", href: socials.github, icon: FaGithub, color: "#ffffff" },
+  { label: "LinkedIn", href: socials.linkedin, icon: FaLinkedinIn, color: "#0a66c2" },
+  { label: "Email", href: `mailto:${socials.email}`, icon: HiOutlineMail, color: "#8b5cf6" },
+  { label: "Instagram", href: socials.instagram, icon: FaInstagram, color: "#e1306c" },
+  { label: "X", href: socials.x, icon: FaXTwitter, color: "#ffffff" },
 ];
 
 export default function Contact() {
@@ -40,23 +43,48 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-4"
+          className="mt-16 flex flex-wrap items-center justify-center gap-5"
         >
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              target="_blank"
-              rel="noreferrer"
-              data-cursor-hover
-              className="group relative overflow-hidden rounded-full border border-white/15 px-6 py-3 font-mono-custom text-sm tracking-wide"
-            >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
-                {l.label}
-              </span>
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent via-accent-2 to-accent-3 transition-transform duration-300 group-hover:translate-x-0" />
-            </a>
-          ))}
+          {links.map((l, i) => {
+            const Icon = l.icon;
+            return (
+              <motion.a
+                key={l.label}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor-hover
+                aria-label={l.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.05 * i }}
+                whileHover={{
+                  y: -10,
+                  rotate: [0, -8, 8, -4, 0],
+                  transition: { rotate: { duration: 0.5 }, y: { duration: 0.25 } },
+                }}
+                whileTap={{ scale: 0.9 }}
+                style={{ "--hc": l.color } as React.CSSProperties}
+                className="group relative flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-bg-soft"
+              >
+                <span
+                  className="pointer-events-none absolute inset-0 rounded-full opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-60"
+                  style={{ background: l.color }}
+                />
+                <span
+                  className="pointer-events-none absolute inset-0 rounded-full border opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ borderColor: l.color }}
+                />
+                <Icon className="relative z-10 h-6 w-6 text-fg/80 transition-colors duration-300 group-hover:text-[var(--hc)]" />
+                <span
+                  className="pointer-events-none absolute -bottom-8 whitespace-nowrap font-mono-custom text-[10px] tracking-[0.2em] text-muted opacity-0 transition-all duration-300 group-hover:-bottom-9 group-hover:opacity-100"
+                >
+                  {l.label.toUpperCase()}
+                </span>
+              </motion.a>
+            );
+          })}
         </motion.div>
       </div>
 
