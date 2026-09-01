@@ -83,8 +83,8 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: "2025 — 2028",
-    title: "B.S. Computer Science",
-    place: "BITS Pilani (Online)",
+    title: "BSc. Computer Science",
+    place: "BITS Pilani",
     status: "active",
   },
   {
