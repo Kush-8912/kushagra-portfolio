@@ -95,7 +95,7 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: "2016 — 2022",
-    title: "Schooling",
+    title: "Secondary Schooling",
     place: "Apeejay School, Pitampura",
     status: "done",
   },
