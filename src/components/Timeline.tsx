@@ -50,7 +50,7 @@ export default function Timeline() {
               className="relative"
             >
               <span
-                className={`absolute -left-[45px] top-1.5 h-3 w-3 rounded-full sm:-left-[57px] ${
+                className={`absolute -left-[45px] top-1.5 h-3 w-3 rounded-full sm:-left-[61px] ${
                   t.status === "active"
                     ? "bg-accent-2 shadow-[0_0_16px_rgba(34,211,238,0.8)]"
                     : "bg-white/30"
