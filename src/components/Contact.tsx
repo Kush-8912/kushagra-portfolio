@@ -17,6 +17,9 @@ const links = [
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
+const fieldClass =
+  "rounded-lg border border-white/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50";
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -90,7 +93,7 @@ export default function Contact() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 disabled={state === "submitting"}
-                className="rounded-lg border border-white/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50"
+                className={fieldClass}
                 placeholder="Your name"
               />
             </div>
@@ -105,7 +108,7 @@ export default function Contact() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={state === "submitting"}
-                className="rounded-lg border border-white/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50"
+                className={fieldClass}
                 placeholder="you@example.com"
               />
             </div>
@@ -123,7 +126,7 @@ export default function Contact() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               disabled={state === "submitting"}
-              className="resize-none rounded-lg border border-white/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50"
+              className={`resize-none ${fieldClass}`}
               placeholder="Want to collaborate, or just want to say hi? Tell me what's on your mind."
             />
           </div>
