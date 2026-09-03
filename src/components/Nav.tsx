@@ -22,6 +22,7 @@ export default function Nav({ initialTheme }: { initialTheme: "light" | "dark" }
   const navigate = useSectionTransition();
 
   useEffect(() => {
+    const hero = document.querySelector("#home");
     const sections = links
       .map((l) => document.querySelector(l.href))
       .filter((el): el is Element => !!el);
@@ -29,14 +30,14 @@ export default function Nav({ initialTheme }: { initialTheme: "light" | "dark" }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveHref(`#${entry.target.id}`);
-          }
+          if (!entry.isIntersecting) return;
+          setActiveHref(entry.target.id === "home" ? null : `#${entry.target.id}`);
         });
       },
       { rootMargin: "-45% 0px -45% 0px" }
     );
 
+    if (hero) observer.observe(hero);
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
