@@ -33,7 +33,7 @@ export default function Timeline() {
       </motion.h2>
 
       <div className="relative mx-auto max-w-2xl pl-10 sm:pl-14">
-        <div className="absolute left-0 top-0 h-full w-px bg-white/10" />
+        <div className="absolute left-0 top-0 h-full w-px bg-fg/10" />
         <motion.div
           style={{ height: lineHeight }}
           className="absolute left-0 top-0 w-px bg-gradient-to-b from-accent via-accent-2 to-accent-3"
@@ -53,7 +53,7 @@ export default function Timeline() {
                 className={`absolute -left-[45px] top-1.5 h-3 w-3 rounded-full sm:-left-[61px] ${
                   t.status === "active"
                     ? "bg-accent-2 shadow-[0_0_16px_rgba(34,211,238,0.8)]"
-                    : "bg-white/30"
+                    : "bg-fg/30"
                 }`}
               />
               <p className="font-mono-custom text-xs tracking-[0.2em] text-muted">

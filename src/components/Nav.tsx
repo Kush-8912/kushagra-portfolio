@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { FaMugSaucer } from "react-icons/fa6";
 import { useSectionTransition } from "./PageTransition";
 import { socials } from "@/data/content";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "#projects", label: "Projects" },
@@ -13,7 +14,7 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Nav() {
+export default function Nav({ initialTheme }: { initialTheme: "light" | "dark" }) {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
   const [activeHref, setActiveHref] = useState<string | null>(null);
@@ -99,34 +100,38 @@ export default function Nav() {
             target="_blank"
             rel="noreferrer"
             data-cursor-hover
-            className="flex items-center gap-2 rounded-full border border-white/15 bg-bg-soft px-4 py-1.5 font-mono-custom text-xs tracking-[0.1em] text-fg/80 transition-colors hover:border-accent-3/60 hover:text-accent-3"
+            className="flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-4 py-1.5 font-mono-custom text-xs tracking-[0.1em] text-fg/80 transition-colors hover:border-accent-3/60 hover:text-accent-3"
           >
             <FaMugSaucer className="h-3.5 w-3.5" />
             BUY ME A COFFEE
           </a>
         </div>
 
-        <button
-          type="button"
-          data-cursor-hover
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-          className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[5px] sm:hidden"
-        >
-          <motion.span
-            animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
-            className="h-px w-6 bg-fg"
-          />
-          <motion.span
-            animate={{ opacity: menuOpen ? 0 : 1 }}
-            className="h-px w-6 bg-fg"
-          />
-          <motion.span
-            animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
-            className="h-px w-6 bg-fg"
-          />
-        </button>
+        <div className="flex items-center gap-3">
+          <ThemeToggle initialTheme={initialTheme} />
+
+          <button
+            type="button"
+            data-cursor-hover
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[5px] sm:hidden"
+          >
+            <motion.span
+              animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
+              className="h-px w-6 bg-fg"
+            />
+            <motion.span
+              animate={{ opacity: menuOpen ? 0 : 1 }}
+              className="h-px w-6 bg-fg"
+            />
+            <motion.span
+              animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
+              className="h-px w-6 bg-fg"
+            />
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -163,7 +168,7 @@ export default function Nav() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.08 * links.length, duration: 0.4 }}
-              className="mt-4 flex items-center gap-2 rounded-full border border-white/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
+              className="mt-4 flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
             >
               <FaMugSaucer className="h-4 w-4" />
               BUY ME A COFFEE
