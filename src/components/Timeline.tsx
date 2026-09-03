@@ -33,10 +33,10 @@ export default function Timeline() {
       </motion.h2>
 
       <div className="relative mx-auto max-w-2xl pl-10 sm:pl-14">
-        <div className="absolute left-0 top-0 h-full w-px bg-fg/10" />
+        <div className="absolute left-0 top-3 bottom-0 w-px bg-fg/10" />
         <motion.div
           style={{ height: lineHeight }}
-          className="absolute left-0 top-0 w-px bg-gradient-to-b from-accent via-accent-2 to-accent-3"
+          className="absolute left-0 top-3 w-px bg-gradient-to-b from-accent via-accent-2 to-accent-3"
         />
 
         <div className="flex flex-col gap-16">
