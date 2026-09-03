@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { FaMugSaucer } from "react-icons/fa6";
 import { useSectionTransition } from "./PageTransition";
+import { socials } from "@/data/content";
 
 const links = [
   { href: "#projects", label: "Projects" },
@@ -68,27 +70,40 @@ export default function Nav() {
           KA<span className="text-accent">.</span>
         </a>
 
-        <div className="relative hidden gap-1 font-mono-custom text-xs tracking-[0.15em] text-muted sm:flex sm:gap-2">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              data-cursor-hover
-              onClick={(e) => handleClick(e, l.href)}
-              className={`relative rounded-full px-3 py-1.5 transition-colors duration-300 ${
-                activeHref === l.href ? "text-black" : "hover:text-fg"
-              }`}
-            >
-              {activeHref === l.href && (
-                <motion.span
-                  layoutId="nav-pill"
-                  className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-accent via-accent-2 to-accent-3"
-                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                />
-              )}
-              {l.label.toUpperCase()}
-            </a>
-          ))}
+        <div className="hidden items-center gap-5 sm:flex">
+          <div className="relative flex gap-1 font-mono-custom text-xs tracking-[0.15em] text-muted sm:gap-2">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                data-cursor-hover
+                onClick={(e) => handleClick(e, l.href)}
+                className={`relative rounded-full px-3 py-1.5 transition-colors duration-300 ${
+                  activeHref === l.href ? "text-black" : "hover:text-fg"
+                }`}
+              >
+                {activeHref === l.href && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-accent via-accent-2 to-accent-3"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
+                {l.label.toUpperCase()}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href={socials.buyMeACoffee}
+            target="_blank"
+            rel="noreferrer"
+            data-cursor-hover
+            className="flex items-center gap-2 rounded-full border border-white/15 bg-bg-soft px-4 py-1.5 font-mono-custom text-xs tracking-[0.1em] text-fg/80 transition-colors hover:border-accent-3/60 hover:text-accent-3"
+          >
+            <FaMugSaucer className="h-3.5 w-3.5" />
+            BUY ME A COFFEE
+          </a>
         </div>
 
         <button
@@ -139,6 +154,20 @@ export default function Nav() {
                 {l.label.toUpperCase()}
               </motion.a>
             ))}
+
+            <motion.a
+              href={socials.buyMeACoffee}
+              target="_blank"
+              rel="noreferrer"
+              data-cursor-hover
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08 * links.length, duration: 0.4 }}
+              className="mt-4 flex items-center gap-2 rounded-full border border-white/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
+            >
+              <FaMugSaucer className="h-4 w-4" />
+              BUY ME A COFFEE
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>
