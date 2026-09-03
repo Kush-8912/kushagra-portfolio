@@ -21,7 +21,7 @@ export async function sendThankYouEmail(name: string, toEmail: string) {
     subject: "Thanks for reaching out!",
     text: `Hi ${name},\n\nThanks for getting in touch — I've received your message and will get back to you soon.\n\nTalk soon,\nKushagra`,
     html: `
-      <div style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 480px; margin: 0 auto; color: #1a1a1a;">
+      <div style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 480px; color: #1a1a1a;">
         <p>Hi ${escapeHtml(name)},</p>
         <p>Thanks for getting in touch — I've received your message and will get back to you soon.</p>
         <p>Talk soon,<br/>Kushagra</p>
