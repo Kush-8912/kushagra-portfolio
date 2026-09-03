@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { FaMugSaucer } from "react-icons/fa6";
+import { FaMugSaucer, FaFileArrowDown } from "react-icons/fa6";
 import { useSectionTransition } from "./PageTransition";
 import { socials } from "@/data/content";
 import ThemeToggle from "./ThemeToggle";
@@ -97,6 +97,16 @@ export default function Nav({ initialTheme }: { initialTheme: "light" | "dark" }
           </div>
 
           <a
+            href="/resume.pdf"
+            download
+            data-cursor-hover
+            className="flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-4 py-1.5 font-mono-custom text-xs tracking-[0.1em] text-fg/80 transition-colors hover:border-accent-2/60 hover:text-accent-2"
+          >
+            <FaFileArrowDown className="h-3.5 w-3.5" />
+            RESUME
+          </a>
+
+          <a
             href={socials.buyMeACoffee}
             target="_blank"
             rel="noreferrer"
@@ -162,14 +172,27 @@ export default function Nav({ initialTheme }: { initialTheme: "light" | "dark" }
             ))}
 
             <motion.a
+              href="/resume.pdf"
+              download
+              data-cursor-hover
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08 * links.length, duration: 0.4 }}
+              className="mt-4 flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
+            >
+              <FaFileArrowDown className="h-4 w-4" />
+              RESUME
+            </motion.a>
+
+            <motion.a
               href={socials.buyMeACoffee}
               target="_blank"
               rel="noreferrer"
               data-cursor-hover
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 * links.length, duration: 0.4 }}
-              className="mt-4 flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
+              transition={{ delay: 0.08 * (links.length + 1), duration: 0.4 }}
+              className="flex items-center gap-2 rounded-full border border-fg/15 bg-bg-soft px-5 py-2.5 font-mono-custom text-sm tracking-[0.1em] text-fg/80"
             >
               <FaMugSaucer className="h-4 w-4" />
               BUY ME A COFFEE
