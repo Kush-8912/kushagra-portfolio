@@ -8,17 +8,17 @@ import { HiOutlineMail } from "react-icons/hi";
 import { socials } from "@/data/content";
 
 const links = [
-  { label: "GitHub", href: socials.github, icon: FaGithub, color: "#ffffff" },
+  { label: "GitHub", href: socials.github, icon: FaGithub, color: "var(--fg)" },
   { label: "LinkedIn", href: socials.linkedin, icon: FaLinkedinIn, color: "#0a66c2" },
   { label: "Email", href: `mailto:${socials.email}`, icon: HiOutlineMail, color: "#8b5cf6" },
   { label: "Instagram", href: socials.instagram, icon: FaInstagram, color: "#e1306c" },
-  { label: "X", href: socials.x, icon: FaXTwitter, color: "#ffffff" },
+  { label: "X", href: socials.x, icon: FaXTwitter, color: "var(--fg)" },
 ];
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const fieldClass =
-  "rounded-lg border border-white/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50";
+  "rounded-lg border border-fg/15 bg-bg-soft px-4 py-3 text-sm text-fg placeholder:text-muted/50 outline-none transition-colors focus:border-accent-2 disabled:opacity-50";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -200,7 +200,7 @@ export default function Contact() {
                 }}
                 whileTap={{ scale: 0.9 }}
                 style={{ "--hc": l.color } as React.CSSProperties}
-                className="group relative flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-bg-soft"
+                className="group relative flex h-16 w-16 items-center justify-center rounded-full border border-fg/15 bg-bg-soft"
               >
                 <span
                   className="pointer-events-none absolute inset-0 rounded-full opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-60"

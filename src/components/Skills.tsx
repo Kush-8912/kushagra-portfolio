@@ -36,7 +36,7 @@ export default function Skills() {
             {loop.map((s, i) => (
               <span
                 key={`${row}-${s}-${i}`}
-                className="font-mono-custom flex shrink-0 items-center rounded-full border border-white/10 bg-bg-soft px-6 py-3 text-sm text-fg/80"
+                className="font-mono-custom flex shrink-0 items-center rounded-full border border-fg/10 bg-bg-soft px-6 py-3 text-sm text-fg/80"
               >
                 {s}
               </span>

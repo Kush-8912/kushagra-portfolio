@@ -42,7 +42,7 @@ export default function CustomCursor() {
         style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%" }}
       />
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[100] hidden rounded-full border border-white/30 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[100] hidden rounded-full border border-fg/30 md:block"
         style={{
           x: ringX,
           y: ringY,
@@ -52,7 +52,9 @@ export default function CustomCursor() {
         animate={{
           width: hovering ? 56 : 32,
           height: hovering ? 56 : 32,
-          borderColor: hovering ? "rgba(139,92,246,0.8)" : "rgba(255,255,255,0.3)",
+          borderColor: hovering
+            ? "rgba(139,92,246,0.8)"
+            : "color-mix(in srgb, var(--fg) 30%, transparent)",
         }}
         transition={{ duration: 0.25 }}
       />

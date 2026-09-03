@@ -40,7 +40,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         onClick={() => setOpen((o) => !o)}
         data-cursor-hover
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-bg-soft p-8 sm:p-10"
+        className="group relative cursor-pointer overflow-hidden rounded-2xl border border-fg/10 bg-bg-soft p-8 sm:p-10"
       >
         <div
           className="pointer-events-none absolute -inset-32 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"
@@ -59,7 +59,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
             <motion.span
               animate={{ rotate: open ? 45 : 0 }}
-              className="mt-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-lg"
+              className="mt-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-fg/15 text-lg"
               style={{ color: project.color }}
             >
               +
@@ -72,7 +72,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.stack.map((s) => (
               <span
                 key={s}
-                className="font-mono-custom rounded-full border border-white/10 px-3 py-1 text-[11px] text-muted"
+                className="font-mono-custom rounded-full border border-fg/10 px-3 py-1 text-[11px] text-muted"
               >
                 {s}
               </span>
@@ -85,7 +85,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="mt-4 border-t border-white/10 pt-6">
+            <div className="mt-4 border-t border-fg/10 pt-6">
               <p className="text-sm leading-relaxed text-fg/80">{project.description}</p>
               <ul className="mt-4 flex flex-col gap-2">
                 {project.highlights.map((h) => (

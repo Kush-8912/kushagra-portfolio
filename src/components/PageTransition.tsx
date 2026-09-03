@@ -50,10 +50,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
                   style={{
                     background:
                       i === 0
-                        ? "linear-gradient(180deg, #8b5cf6, #05050700)"
+                        ? "linear-gradient(180deg, #8b5cf6, transparent)"
                         : i === 1
-                        ? "linear-gradient(180deg, #22d3ee, #05050700)"
-                        : "linear-gradient(180deg, #f472b6, #05050700)",
+                        ? "linear-gradient(180deg, #22d3ee, transparent)"
+                        : "linear-gradient(180deg, #f472b6, transparent)",
                   }}
                 />
               </motion.div>
