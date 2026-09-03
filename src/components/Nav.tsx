@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { useSectionTransition } from "./PageTransition";
 
 const links = [
@@ -15,6 +15,7 @@ export default function Nav() {
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
   const [activeHref, setActiveHref] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useSectionTransition();
 
   useEffect(() => {
@@ -37,8 +38,17 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
     e.preventDefault();
+    setMenuOpen(false);
     navigate(href);
   }
 
@@ -57,7 +67,8 @@ export default function Nav() {
         >
           KA<span className="text-accent">.</span>
         </a>
-        <div className="relative flex gap-1 font-mono-custom text-xs tracking-[0.15em] text-muted sm:gap-2">
+
+        <div className="relative hidden gap-1 font-mono-custom text-xs tracking-[0.15em] text-muted sm:flex sm:gap-2">
           {links.map((l) => (
             <a
               key={l.href}
@@ -79,7 +90,58 @@ export default function Nav() {
             </a>
           ))}
         </div>
+
+        <button
+          type="button"
+          data-cursor-hover
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          className="relative z-50 flex h-9 w-9 flex-col items-center justify-center gap-[5px] sm:hidden"
+        >
+          <motion.span
+            animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}
+            className="h-px w-6 bg-fg"
+          />
+          <motion.span
+            animate={{ opacity: menuOpen ? 0 : 1 }}
+            className="h-px w-6 bg-fg"
+          />
+          <motion.span
+            animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }}
+            className="h-px w-6 bg-fg"
+          />
+        </button>
       </nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-30 flex flex-col items-center justify-center gap-8 bg-bg/98 backdrop-blur-md sm:hidden"
+          >
+            {links.map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                data-cursor-hover
+                onClick={(e) => handleClick(e, l.href)}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08 * i, duration: 0.4 }}
+                className={`font-mono-custom text-2xl tracking-[0.15em] ${
+                  activeHref === l.href ? "text-gradient" : "text-fg"
+                }`}
+              >
+                {l.label.toUpperCase()}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
