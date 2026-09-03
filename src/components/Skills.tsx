@@ -29,7 +29,7 @@ export default function Skills() {
       {[0, 1].map((row) => (
         <div
           key={row}
-          className="group relative mb-4 flex overflow-hidden"
+          className="group relative mb-4 flex overflow-hidden py-2"
           style={{
             maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
             WebkitMaskImage:
