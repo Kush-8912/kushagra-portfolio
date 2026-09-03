@@ -115,4 +115,4 @@ export const achievements = [
 ];
 
 export const bio =
-  "Kushagra Aggarwal. 19, from Delhi. Studying Computer Science & AI at Scaler School of Technology, Bengaluru. Curious by default, building by habit.";
+  "19, from Delhi. Studying Computer Science & AI at Scaler School of Technology, Bengaluru. Curious by default, building by habit.";
