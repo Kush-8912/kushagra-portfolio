@@ -4,6 +4,7 @@ export const socials = {
   email: "kushagraaggarwal76@gmail.com",
   instagram: "https://www.instagram.com/kushagra_891200/",
   x: "https://x.com/Kushagra8912",
+  buyMeACoffee: "https://buymeacoffee.com/kushagra_dev",
 };
 
 export type Project = {
