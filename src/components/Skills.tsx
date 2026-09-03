@@ -27,21 +27,30 @@ export default function Skills() {
       </motion.h2>
 
       {[0, 1].map((row) => (
-        <div key={row} className="relative mb-4 flex overflow-hidden">
-          <motion.div
-            animate={{ x: row === 0 ? ["0%", "-50%"] : ["-50%", "0%"] }}
-            transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-            className="flex shrink-0 gap-4 pr-4"
+        <div
+          key={row}
+          className="group relative mb-4 flex overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <div
+            className={`flex shrink-0 gap-4 pr-4 group-hover:[animation-play-state:paused] ${
+              row === 0 ? "animate-[marquee-left_28s_linear_infinite]" : "animate-[marquee-right_28s_linear_infinite]"
+            }`}
           >
             {loop.map((s, i) => (
               <span
                 key={`${row}-${s}-${i}`}
-                className="font-mono-custom flex shrink-0 items-center rounded-full border border-fg/10 bg-bg-soft px-6 py-3 text-sm text-fg/80"
+                data-cursor-hover
+                className="font-mono-custom flex shrink-0 items-center rounded-full border border-fg/10 bg-bg-soft px-6 py-3 text-sm text-fg/80 transition-all duration-300 hover:-translate-y-1 hover:border-accent-2/60 hover:text-accent-2 hover:shadow-[0_0_20px_-4px_rgba(34,211,238,0.5)]"
               >
                 {s}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
       ))}
     </section>
